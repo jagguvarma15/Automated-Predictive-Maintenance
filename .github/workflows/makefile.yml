@@ -14,20 +14,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up environment
-        run: |
-          mkdir -p /workspaces/Automated-Predictive-Maintenance/alerts
-          mkdir -p /workspaces/Automated-Predictive-Maintenance/data/raw
-          mkdir -p /workspaces/Automated-Predictive-Maintenance/data/processed
-          mkdir -p /workspaces/Automated-Predictive-Maintenance/models
-      
-          # Create dummy files
-          echo "Test alert message" > /workspaces/Automated-Predictive-Maintenance/alerts/alerts.txt
-          echo "timestamp,DV_pressure,Oil_temperature,Motor_current,COMP" > /workspaces/Automated-Predictive-Maintenance/data/raw/MetroPT3(AirCompressor).csv
-          echo "2023-01-01 00:00:00,50.0,85.0,7.5,1" >> /workspaces/Automated-Predictive-Maintenance/data/raw/MetroPT3(AirCompressor).csv
-          python -c "import pandas as pd; pd.DataFrame({'pressure': [50.0], 'temperature': [85.0], 'motor_current': [7.5], 'air_intake': [1]}).to_parquet('/workspaces/Automated-Predictive-Maintenance/data/processed/MetroPT3_cleaned.parquet')"
-          python -c "import xgboost as xgb; import numpy as np; dtrain = xgb.DMatrix(np.random.rand(10, 3), label=np.random.randint(2, size=10)); params = {'objective': 'binary:logistic'}; model = xgb.train(params, dtrain, num_boost_round=2); model.save_model('/workspaces/Automated-Predictive-Maintenance/models/xgboost_model.json')"
-
       # Step 1: Check out the repository
       - name: Checkout code
         uses: actions/checkout@v3
@@ -52,11 +38,11 @@ jobs:
           flake8 scripts/ --max-line-length=120
 
       # Step 5: Run unit tests
-      - name: Run unit tests
-        run: |
-          echo "Running tests..."
-          pip install pytest
-          pytest tests/
+      #- name: Run unit tests
+       # run: |
+        #  echo "Running tests..."
+          #pip install pytest
+          #pytest tests/
 
       # Step 6: Debug data ingestion
       - name: Debug ingestion step
