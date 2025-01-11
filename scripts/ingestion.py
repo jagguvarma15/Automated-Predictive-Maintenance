@@ -13,7 +13,7 @@ s3_key = "MetroPT3(AirCompressor).csv"  # Key (path) in the S3 bucket
 url = "https://archive.ics.uci.edu/static/public/791/metropt+3+dataset.zip"
 
 # Local paths
-raw_data_dir = "/workspaces/Automated-Predictive-Maintenance/data/raw/"
+raw_data_dir = "./data/raw/"
 os.makedirs(raw_data_dir, exist_ok=True)  # Ensure the directory exists
 zip_file_path = os.path.join(raw_data_dir, "metropt3_dataset.zip")
 
