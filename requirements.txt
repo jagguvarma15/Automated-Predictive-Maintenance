@@ -1,0 +1,9 @@
+boto3      # AWS SDK for Python
+pandas    # Data manipulation and analysis
+numpy      # Numerical computations
+sagemaker   # Amazon SageMaker SDK for training and deploying models
+xgboost   # ML model training for predictive maintenance
+pyarrow     # Reading and writing Parquet files
+scikit-learn  # Model evaluation and preprocessing (optional)
+matplotlib   # Data visualization (optional for analysis)
+pyspark
