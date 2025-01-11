@@ -3,7 +3,7 @@ import pandas as pd
 import os
 import requests
 import zipfile
-from io import BytesIO
+
 
 # AWS S3 configuration
 s3 = boto3.client('s3')
