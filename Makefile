@@ -35,17 +35,12 @@ training: $(MODEL_FILE)
 	@echo "Running training process..."
 	$(PYTHON) scripts/training.py
 
-# Step 5: Run inference
+# Step 5: Run inference and log alert
 .PHONY: inference
 inference: $(MODEL_FILE)
 	@echo "Running inference..."
-	$(PYTHON) scripts/inference.py
-
-# Step 6: Generate alerts
-.PHONY: alert
-alert: $(MODEL_FILE)
 	@echo "Generating alerts..."
-	$(PYTHON) scripts/alerts.py
+	$(PYTHON) scripts/inference.py
 
 # Clean generated files
 .PHONY: clean

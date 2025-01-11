@@ -21,3 +21,4 @@ def log_alert(message, file_path="/workspaces/Automated-Predictive-Maintenance/a
     with open(file_path, "a") as file:
         file.write(log_message)
     print(f"Alert logged: {log_message.strip()}")
+

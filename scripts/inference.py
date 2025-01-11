@@ -1,6 +1,6 @@
 import xgboost as xgb
 import numpy as np
-import pandas as pd
+from alerts import log_alert
 
 # Path to the trained model
 model_path = "/workspaces/Automated-Predictive-Maintenance/models/xgboost_model.json"
@@ -38,3 +38,7 @@ result = run_inference(input_data)
 
 # Output the result
 print(f"Prediction: {result['prediction']} (Probability: {result['probability']:.2f})")
+
+# Log alert if the prediction indicates a high failure probability
+if result["prediction"] == 1:
+    log_alert(f"High failure probability detected! Probability: {result['probability']:.2f}")
