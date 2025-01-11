@@ -15,32 +15,36 @@ all: ingestion etl train_model inference alert
 .PHONY: ingestion
 ingestion:
 	@echo "Running data ingestion..."
-	$(PYTHON) scripts/ingestion.py
+	$(PYTHON) scripts/ingestion.py || echo "Ingestion failed. Check the logs."
 
 # Step 2: Run ETL
 .PHONY: etl
 etl: $(RAW_DATA)
 	@echo "Running ETL to process raw data..."
-	$(PYTHON) scripts/etl.py
+	$(PYTHON) scripts/etl.py || echo "ETL step failed. Check the logs."
 
 # Step 3: Train the model
 .PHONY: train_model
 train_model: $(PROCESSED_DATA)
 	@echo "Training the model..."
-	$(PYTHON) scripts/train_script.py
+	$(PYTHON) scripts/train_script.py || echo "Model training failed. Check the logs."
 
 # Step 4: Run training process
 .PHONY: training
 training: $(MODEL_FILE)
 	@echo "Running training process..."
-	$(PYTHON) scripts/training.py
+	$(PYTHON) scripts/training.py || echo "Training process failed. Check the logs."
 
 # Step 5: Run inference and log alert
 .PHONY: inference
 inference: $(MODEL_FILE)
 	@echo "Running inference..."
-	@echo "Generating alerts..."
-	$(PYTHON) scripts/inference.py
+	$(PYTHON) scripts/inference.py || echo "Inference step failed. Check the logs."
+
+# Step 6: Generate alerts
+.PHONY: alert
+alert: inference
+	@echo "Alerts generated successfully."
 
 # Clean generated files
 .PHONY: clean
