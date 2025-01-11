@@ -30,7 +30,7 @@ def train_xgboost(train_path, model_output_path):
     try:
         X = data[["pressure", "temperature", "motor_current"]]
         y = data["air_intake"]
-        print(f"Data successfully split into features and target.")
+        print("Data successfully split into features and target.")
     except KeyError as e:
         print(f"Missing expected columns in training data: {e}")
         exit(1)
